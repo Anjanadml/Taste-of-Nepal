@@ -1,0 +1,73 @@
+{
+  "restaurant": {
+    "name": "Taste of Nepal",
+    "tagline": "Authentic Flavours from the Himalayas",
+    "phone": "+91 9810369433",
+    "instagram": "TasteOfNepal01",
+    "location": "Bijwasan, New Delhi",
+    "hours": "Tuesday – Sunday: 11:00 AM – 10:00 PM",
+    "closed": "Monday"
+  },
+  "menu": {
+    "categories": ["Momos", "Noodles", "Drinks"],
+    "items": [
+      {
+        "id": 1,
+        "category": "Momos",
+        "name": "Steamed Veg Momo",
+        "description": "Soft steamed dumplings filled with spiced cabbage, carrot and paneer. Served with fiery tomato achar.",
+        "price": 110,
+        "currency": "₹",
+        "badge": "veg",
+        "emoji": "🥟",
+        "popular": false
+      },
+      {
+        "id": 2,
+        "category": "Momos",
+        "name": "Steamed Non-Veg Momo",
+        "description": "Hand-folded steamed momos stuffed with minced chicken, ginger and Nepali spices. With tomato chutney.",
+        "price": 130,
+        "currency": "₹",
+        "badge": "non-veg",
+        "emoji": "🥟",
+        "popular": true
+      },
+      {
+        "id": 3,
+        "category": "Momos",
+        "name": "Fried Veg Momo",
+        "description": "Crispy golden-fried dumplings with a crunchy shell and soft vegetable filling. Addictively good.",
+        "price": 120,
+        "currency": "₹",
+        "badge": "veg",
+        "emoji": "🥟",
+        "popular": false
+      },
+      {
+        "id": 4,
+        "category": "Momos",
+        "name": "Fried Non-Veg Momo",
+        "description": "Deep-fried chicken momos with a perfectly crispy exterior. Best paired with our sesame dip.",
+        "price": 140,
+        "currency": "₹",
+        "badge": "non-veg",
+        "emoji": "🥟",
+        "popular": true
+      },
+      {
+        "id": 5,
+        "category": "Noodles",
+        "name": "Non-Veg Thukpa",
+        "description": "Hearty Tibetan-style noodle soup with tender chicken, fresh herbs, and a rich spiced broth.",
+        "price": 160,
+        "currency": "₹",
+        "badge": "non-veg",
+        "emoji": "🍜",
+        "popular": true
+      }
+    ]
+  },
+  "orders": [],
+  "reservations": []
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu — Taste of Nepal</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-brand"><a href="../index.html"><span class="logo-text">🍜 Taste of Nepal</span><span class="logo-sub">Bijwasan, New Delhi</span></a></div>
+    <ul class="navbar-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="menu.html" class="active">Menu</a></li>
+      <li><a href="order.html">Order</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="order.html" class="navbar-cta"><i class="ti ti-shopping-cart" style="font-size:14px;vertical-align:-2px;margin-right:4px" aria-hidden="true"></i>Cart <span id="cart-badge" style="display:none;background:var(--gold-light);color:var(--brown);border-radius:10px;font-size:10px;padding:1px 6px;margin-left:4px"></span></a></li>
+    </ul>
+  </nav>
+
+  <div style="background:var(--red-dark);padding:48px 24px;text-align:center;border-bottom:2px solid var(--gold)">
+    <p style="font-family:var(--font-ui);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px">What we serve</p>
+    <h1 style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);color:var(--cream)">Our Menu</h1>
+    <p style="color:rgba(253,246,227,0.7);max-width:480px;margin:12px auto 0">All momos are served in portions of 8 pieces. Made fresh to order.</p>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="menu-filter">
+        <button class="filter-btn active" data-filter="all">All items</button>
+        <button class="filter-btn" data-filter="momo">Momos</button>
+        <button class="filter-btn" data-filter="thukpa">Thukpa</button>
+        <button class="filter-btn" data-filter="veg">Veg only</button>
+        <button class="filter-btn" data-filter="nonveg">Non-veg only</button>
+      </div>
+      <div class="card-grid" id="menu-grid"></div>
+      <div style="margin-top:36px;padding:20px 24px;background:var(--parchment);border:1px solid var(--border);border-radius:var(--radius-lg);text-align:center">
+        <p style="font-size:0.9rem;color:var(--text-muted)">🌶 Spice level adjustable &nbsp;·&nbsp; 📞 Bulk orders: <a href="tel:+919810369433" style="color:var(--red)">+91 98103 69433</a></p>
+      </div>
+    </div>
+  </section>
+
+  <div style="background:var(--parchment);border-top:1px solid var(--border);padding:40px 24px;text-align:center">
+    <h2 style="font-family:var(--font-display);font-size:1.8rem;color:var(--red-dark);margin-bottom:12px">Ready to order?</h2>
+    <p style="color:var(--text-muted);margin-bottom:24px">Add items above and head to checkout.</p>
+    <a href="order.html" class="btn btn-primary">Go to checkout</a>
+  </div>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div><div class="footer-brand-name">🍜 Taste of Nepal</div><div class="footer-brand-tagline">Authentic Nepali cloud kitchen · Bijwasan, New Delhi</div><div class="footer-brand-contact">📞 <a href="tel:+919810369433">+91 98103 69433</a><br>📸 <a href="https://www.instagram.com/TasteOfNepal01" target="_blank">@TasteOfNepal01</a></div></div>
+      <div class="footer-col"><h4>Navigate</h4><ul><li><a href="../index.html">Home</a></li><li><a href="menu.html">Menu</a></li><li><a href="order.html">Order</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Hours</h4><ul><li><a>Mon–Fri: 11am–10pm</a></li><li><a>Sat–Sun: 10am–11pm</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Taste of Nepal</span><span>Bijwasan, New Delhi</span></div>
+  </footer>
+
+  <script src="../js/db.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/menu.js"></script>
+</body>
+</html>

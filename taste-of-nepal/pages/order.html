@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Online — Taste of Nepal</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-brand"><a href="../index.html"><span class="logo-text">🍜 Taste of Nepal</span><span class="logo-sub">Bijwasan, New Delhi</span></a></div>
+    <ul class="navbar-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="order.html" class="active">Order</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="order.html" class="navbar-cta"><i class="ti ti-shopping-cart" style="font-size:14px;vertical-align:-2px;margin-right:4px" aria-hidden="true"></i>Cart <span id="cart-badge" style="display:none;background:var(--gold-light);color:var(--brown);border-radius:10px;font-size:10px;padding:1px 6px;margin-left:4px"></span></a></li>
+    </ul>
+  </nav>
+
+  <div style="background:var(--red-dark);padding:48px 24px;text-align:center;border-bottom:2px solid var(--gold)">
+    <p style="font-family:var(--font-ui);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:10px">Delivery in 45–60 min</p>
+    <h1 style="font-family:var(--font-display);font-size:clamp(2rem,4vw,3rem);color:var(--cream)">Order Online</h1>
+  </div>
+
+  <section class="section">
+    <div class="container" style="max-width:960px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start">
+
+      <!-- ORDER FORM -->
+      <div>
+        <h2 style="font-family:var(--font-body);font-size:1.3rem;color:var(--red-dark);margin-bottom:20px;border-bottom:1px solid var(--border);padding-bottom:10px">Delivery details</h2>
+
+        <!-- Native POST form — no JS intercept so FormSubmit works properly -->
+        <form action="https://formsubmit.co/dhimalbusiness22@gmail.com" method="POST" id="order-form">
+          <!-- FormSubmit settings -->
+          <input type="hidden" name="_subject"  value="🥟 New Order — Taste of Nepal" />
+          <input type="hidden" name="_captcha"  value="false" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_next"     value="https://taste-of-nepal.netlify.app/pages/thankyou.html" />
+          <!-- Cart injected by JS on submit -->
+          <input type="hidden" name="Items ordered" id="field-items" value="(none added yet)" />
+          <input type="hidden" name="Order total"   id="field-total" value="" />
+
+          <div class="form-row">
+            <div class="form-group"><label>Your name</label><input type="text" name="Customer name" placeholder="Rajesh Sharma" required /></div>
+            <div class="form-group"><label>Phone number</label><input type="tel"  name="Phone number" placeholder="+91 98765 43210" required /></div>
+          </div>
+          <div class="form-group"><label>Delivery address</label><input type="text" name="Delivery address" placeholder="House no., street, Bijwasan..." required /></div>
+          <div class="form-group"><label>Special instructions (optional)</label><textarea name="Special instructions" placeholder="Less spicy, extra chutney, ring the bell..."></textarea></div>
+
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;padding:14px">
+            <i class="ti ti-send" aria-hidden="true"></i> Place order
+          </button>
+          <p style="font-size:0.82rem;color:var(--text-muted);text-align:center;margin-top:10px">
+            You'll see a live tracker after placing the order
+          </p>
+        </form>
+      </div>
+
+      <!-- CART SUMMARY -->
+      <div>
+        <h2 style="font-family:var(--font-body);font-size:1.3rem;color:var(--red-dark);margin-bottom:20px;border-bottom:1px solid var(--border);padding-bottom:10px">Your cart</h2>
+        <div class="order-summary" id="cart-summary"></div>
+        <a href="menu.html" class="btn btn-outline" style="width:100%;justify-content:center;border-color:var(--border);color:var(--text-muted);margin-top:12px">
+          <i class="ti ti-plus" aria-hidden="true"></i> Add more items
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESERVATION -->
+  <section class="section" style="background:var(--parchment);border-top:1px solid var(--border)">
+    <div class="container section-center">
+      <p class="section-eyebrow">Plan ahead</p>
+      <h2 class="section-title">Make a reservation</h2>
+      <div class="divider"><span>❧</span></div>
+      <form action="https://formsubmit.co/dhimalbusiness22@gmail.com" method="POST" class="form-wrap">
+        <input type="hidden" name="_subject"  value="📅 New Reservation — Taste of Nepal" />
+        <input type="hidden" name="_captcha"  value="false" />
+        <input type="hidden" name="_template" value="table" />
+        <input type="hidden" name="_next"     value="https://taste-of-nepal.netlify.app/pages/thankyou.html" />
+        <div class="form-row">
+          <div class="form-group"><label>Name</label><input type="text" name="name" placeholder="Your name" required /></div>
+          <div class="form-group"><label>Guests</label>
+            <select name="guests"><option>1 person</option><option>2 people</option><option>3–4 people</option><option>5+ people</option></select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group"><label>Date</label><input type="date" name="date" required /></div>
+          <div class="form-group"><label>Time</label>
+            <select name="time"><option>12:00 PM</option><option>1:00 PM</option><option>2:00 PM</option><option>7:00 PM</option><option>8:00 PM</option><option>9:00 PM</option></select>
+          </div>
+        </div>
+        <div class="form-group"><label>Phone</label><input type="tel" name="phone" placeholder="+91 98765 43210" required /></div>
+        <button type="submit" class="btn btn-red" style="width:100%;justify-content:center;padding:14px">
+          <i class="ti ti-calendar-check" aria-hidden="true"></i> Confirm reservation
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div><div class="footer-brand-name">🍜 Taste of Nepal</div><div class="footer-brand-tagline">Bijwasan, New Delhi</div><div class="footer-brand-contact">📞 <a href="tel:+919810369433">+91 98103 69433</a><br>📸 <a href="https://www.instagram.com/TasteOfNepal01" target="_blank">@TasteOfNepal01</a></div></div>
+      <div class="footer-col"><h4>Navigate</h4><ul><li><a href="../index.html">Home</a></li><li><a href="menu.html">Menu</a></li><li><a href="order.html">Order</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h4>Hours</h4><ul><li><a>Mon–Fri: 11am–10pm</a></li><li><a>Sat–Sun: 10am–11pm</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Taste of Nepal</span><span>Bijwasan, New Delhi</span></div>
+  </footer>
+
+  <script src="../js/db.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/order.js"></script>
+  <script>
+    // Inject cart into hidden fields before form submits to FormSubmit
+    document.getElementById('order-form').addEventListener('submit', function(e) {
+      const cart = DB.getCart();
+      if (!cart.length) {
+        e.preventDefault();
+        showToast('Your cart is empty — add items from the menu first.');
+        return;
+      }
+      const itemsText = cart.map(i => i.name + ' x' + i.qty + ' = ₹' + (i.price * i.qty)).join(' | ');
+      document.getElementById('field-items').value = itemsText;
+      document.getElementById('field-total').value = '₹' + DB.cartTotal();
+
+      // Save order info to localStorage so thankyou page can show tracker
+      const orderData = {
+        placedAt: Date.now(),
+        items: cart,
+        total: DB.cartTotal(),
+        name: this.querySelector('[name="Customer name"]').value,
+        phone: this.querySelector('[name="Phone number"]').value,
+        address: this.querySelector('[name="Delivery address"]').value
+      };
+      localStorage.setItem('ton_last_order', JSON.stringify(orderData));
+      DB.clearCart();
+
+      // Also ping WhatsApp
+      const msg = encodeURIComponent('New Order!\nName: ' + orderData.name + '\nPhone: ' + orderData.phone + '\nAddress: ' + orderData.address + '\nItems: ' + itemsText + '\nTotal: ₹' + orderData.total);
+      setTimeout(() => window.open('https://wa.me/919810369433?text=' + msg, '_blank'), 800);
+      // Let form submit naturally to FormSubmit
+    });
+  </script>
+</body>
+</html>

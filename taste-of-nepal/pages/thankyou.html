@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Confirmed — Taste of Nepal</title>
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <style>
+    .tracker { max-width: 520px; margin: 0 auto; }
+    .track-steps { position: relative; margin: 36px 0; }
+    .track-steps::before {
+      content: ''; position: absolute; left: 20px; top: 0; bottom: 0;
+      width: 2px; background: var(--border);
+    }
+    .track-step { display: flex; gap: 18px; align-items: flex-start; margin-bottom: 28px; position: relative; }
+    .step-icon {
+      width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; position: relative; z-index: 1;
+      border: 2px solid var(--border);
+      background: var(--cream);
+      transition: all 0.4s;
+    }
+    .step-icon.done   { background: #e8f5e9; border-color: #4caf50; color: #2e7d32; }
+    .step-icon.active { background: var(--parchment); border-color: var(--gold); color: var(--gold); }
+    .step-icon.waiting{ background: var(--cream); border-color: var(--border); color: var(--text-muted); }
+    .step-body { padding-top: 6px; }
+    .step-title { font-family: var(--font-body); font-size: 1rem; font-weight: 600; color: var(--red-dark); }
+    .step-title.waiting { color: var(--text-muted); }
+    .step-time { font-family: var(--font-ui); font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+    .step-time.active { color: var(--gold); font-weight: 500; }
+
+    .progress-bar-wrap { background: var(--parchment); border-radius: 20px; height: 8px; margin: 24px 0; overflow: hidden; border: 1px solid var(--border); }
+    .progress-bar-fill { height: 100%; background: linear-gradient(90deg, var(--red-dark), var(--gold)); border-radius: 20px; transition: width 1s ease; }
+
+    .eta-box { background: var(--red-dark); color: var(--cream); border-radius: var(--radius-lg); padding: 20px 24px; text-align: center; margin-bottom: 28px; }
+    .eta-time { font-family: var(--font-display); font-size: 2.8rem; color: var(--gold-light); line-height: 1; }
+    .eta-label { font-family: var(--font-ui); font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(253,246,227,0.7); margin-top: 6px; }
+    .eta-sub { font-size: 0.85rem; color: rgba(253,246,227,0.55); margin-top: 4px; }
+  </style>
+</head>
+<body>
+  <nav class="navbar">
+    <div class="navbar-brand"><a href="../index.html"><span class="logo-text">🍜 Taste of Nepal</span><span class="logo-sub">Bijwasan, New Delhi</span></a></div>
+    <ul class="navbar-links">
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="order.html">Order</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div style="background:var(--red-dark);padding:40px 24px;text-align:center;border-bottom:2px solid var(--gold)">
+    <div style="font-size:3rem;margin-bottom:10px">🥟</div>
+    <p style="font-family:var(--font-ui);font-size:11px;letter-spacing:0.2em;text-transform:uppercase;color:var(--gold);margin-bottom:8px">Order confirmed</p>
+    <h1 style="font-family:var(--font-display);font-size:clamp(1.8rem,4vw,2.6rem);color:var(--cream)">धन्यवाद — Thank you!</h1>
+    <p style="color:rgba(253,246,227,0.7);margin-top:8px;font-size:0.95rem">Your order is being prepared with love.</p>
+  </div>
+
+  <section class="section" style="padding-top:40px;padding-bottom:20px">
+    <div class="tracker">
+
+      <!-- ETA COUNTDOWN -->
+      <div class="eta-box">
+        <div class="eta-label">Estimated delivery in</div>
+        <div class="eta-time" id="eta-display">55:00</div>
+        <div class="eta-sub">mins · seconds</div>
+      </div>
+
+      <!-- PROGRESS BAR -->
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="progress-bar" style="width:8%"></div>
+      </div>
+
+      <!-- STEP TRACKER -->
+      <div class="track-steps" id="track-steps">
+        <div class="track-step">
+          <div class="step-icon done" id="icon-0">✓</div>
+          <div class="step-body">
+            <div class="step-title">Order received</div>
+            <div class="step-time done" id="time-0">Just now</div>
+          </div>
+        </div>
+        <div class="track-step">
+          <div class="step-icon active" id="icon-1">🍳</div>
+          <div class="step-body">
+            <div class="step-title" id="title-1">Preparing your food</div>
+            <div class="step-time active" id="time-1">In progress — ready in ~20 min</div>
+          </div>
+        </div>
+        <div class="track-step">
+          <div class="step-icon waiting" id="icon-2">📦</div>
+          <div class="step-body">
+            <div class="step-title waiting" id="title-2">Packing your order</div>
+            <div class="step-time" id="time-2">~25 min</div>
+          </div>
+        </div>
+        <div class="track-step">
+          <div class="step-icon waiting" id="icon-3">🚴</div>
+          <div class="step-body">
+            <div class="step-title waiting" id="title-3">Out for delivery</div>
+            <div class="step-time" id="time-3">~35 min</div>
+          </div>
+        </div>
+        <div class="track-step">
+          <div class="step-icon waiting" id="icon-4">🏠</div>
+          <div class="step-body">
+            <div class="step-title waiting" id="title-4">Delivered!</div>
+            <div class="step-time" id="time-4">~55 min</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CONTACT -->
+      <div style="background:var(--parchment);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px 24px;text-align:center;margin-bottom:28px">
+        <p style="font-size:0.9rem;color:var(--text-muted);margin-bottom:12px">Questions about your order?</p>
+        <div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+          <a href="tel:+919810369433" class="btn btn-primary" style="font-size:12px;padding:9px 18px">
+            <i class="ti ti-phone" aria-hidden="true"></i> Call us
+          </a>
+          <a href="https://wa.me/919810369433" target="_blank" class="btn btn-red" style="font-size:12px;padding:9px 18px">
+            <i class="ti ti-brand-whatsapp" aria-hidden="true"></i> WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <div style="text-align:center">
+        <a href="menu.html" class="btn btn-outline" style="border-color:var(--border);color:var(--text-muted)">Order more items</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-grid">
+      <div><div class="footer-brand-name">🍜 Taste of Nepal</div><div class="footer-brand-tagline">Authentic Nepali cloud kitchen · Bijwasan, New Delhi</div><div class="footer-brand-contact">📞 <a href="tel:+919810369433">+91 98103 69433</a></div></div>
+      <div class="footer-col"><h4>Navigate</h4><ul><li><a href="../index.html">Home</a></li><li><a href="menu.html">Menu</a></li><li><a href="order.html">Order again</a></li></ul></div>
+      <div class="footer-col"><h4>Hours</h4><ul><li><a>Mon–Fri: 11am–10pm</a></li><li><a>Sat–Sun: 10am–11pm</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><span>© 2026 Taste of Nepal</span><span>Bijwasan, New Delhi</span></div>
+  </footer>
+
+  <script src="../js/db.js"></script>
+  <script src="../js/main.js"></script>
+  <script>
+    // Delivery steps: [startMin, endMin, icon, label]
+    const STEPS = [
+      { start: 0,  end: 0,  icon: '✓', label: 'Order received',      sub: 'Confirmed!' },
+      { start: 0,  end: 20, icon: '🍳', label: 'Preparing your food', sub: 'In progress' },
+      { start: 20, end: 25, icon: '📦', label: 'Packing your order',  sub: 'Almost ready' },
+      { start: 25, end: 45, icon: '🚴', label: 'Out for delivery',    sub: 'On the way!' },
+      { start: 45, end: 55, icon: '🏠', label: 'Delivered!',          sub: 'Enjoy your meal 🥟' },
+    ];
+
+    const TOTAL_SECS = 55 * 60;
+    const startTime = parseInt(localStorage.getItem('ton_order_start') || '0');
+    const now = Date.now();
+
+    // If no start time saved (fresh page), save now
+    if (!startTime) localStorage.setItem('ton_order_start', now);
+    const orderStart = parseInt(localStorage.getItem('ton_order_start'));
+
+    function getElapsedMins() {
+      return (Date.now() - orderStart) / 60000;
+    }
+
+    function updateTracker() {
+      const elapsedSecs = (Date.now() - orderStart) / 1000;
+      const remainSecs  = Math.max(0, TOTAL_SECS - elapsedSecs);
+      const elapsedMins = elapsedSecs / 60;
+      const progress    = Math.min(100, (elapsedSecs / TOTAL_SECS) * 100);
+
+      // ETA countdown
+      const m = Math.floor(remainSecs / 60);
+      const s = Math.floor(remainSecs % 60);
+      document.getElementById('eta-display').textContent =
+        remainSecs <= 0 ? 'Delivered!' : m + ':' + String(s).padStart(2,'0');
+
+      // Progress bar
+      document.getElementById('progress-bar').style.width = progress + '%';
+
+      // Steps
+      STEPS.forEach((step, i) => {
+        const icon  = document.getElementById('icon-' + i);
+        const title = document.getElementById('title-' + i);
+        const time  = document.getElementById('time-' + i);
+
+        const isDone   = elapsedMins > step.end && i < STEPS.length - 1;
+        const isActive = elapsedMins >= step.start && elapsedMins <= step.end;
+        const isLast   = i === STEPS.length - 1;
+
+        if (isDone) {
+          icon.className  = 'step-icon done';
+          icon.textContent = '✓';
+          if (title) title.className = 'step-title';
+          if (time)  { time.className = 'step-time'; time.textContent = 'Done ✓'; }
+        } else if (isActive || (isLast && elapsedMins >= step.start)) {
+          icon.className  = 'step-icon active';
+          icon.textContent = step.icon;
+          if (title) { title.className = 'step-title'; }
+          if (time)  {
+            time.className = 'step-time active';
+            const minsLeft = Math.max(0, Math.ceil(step.end - elapsedMins));
+            time.textContent = minsLeft > 0 ? step.sub + ' · ~' + minsLeft + ' min' : step.sub;
+          }
+        } else {
+          icon.className  = 'step-icon waiting';
+          icon.textContent = step.icon;
+          if (title) title.className = 'step-title waiting';
+          if (time)  {
+            time.className = 'step-time';
+            time.textContent = 'In ~' + step.start + ' min';
+          }
+        }
+      });
+
+      if (remainSecs > 0) {
+        setTimeout(updateTracker, 1000);
+      } else {
+        document.getElementById('eta-display').textContent = 'Delivered!';
+        document.getElementById('progress-bar').style.width = '100%';
+      }
+    }
+
+    updateTracker();
+  </script>
+</body>
+</html>

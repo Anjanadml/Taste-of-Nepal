@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Menu — Taste of Nepal · Bijwasan, New Delhi</title>
+  <meta name="description" content="Our full menu of authentic Nepali momos, thukpa and more. Order online via WhatsApp." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/dist/tabler-icons.min.css" />
+</head>
+<body>
+
+<div class="border-strip"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-icon">🏔️</div>
+      <div>
+        <div class="nav-logo-text">Taste of Nepal</div>
+        <div class="nav-logo-sub">Bijwasan, New Delhi</div>
+      </div>
+    </a>
+    <div class="nav-links" id="nav-links">
+      <a href="index.html">Home</a>
+      <a href="menu.html">Menu</a>
+      <a href="reservation.html">Reserve</a>
+      <a href="contact.html">Contact</a>
+      <a href="#" class="nav-cta" onclick="openCart();return false;">
+        <div class="cart-btn-wrap">
+          🛒 Cart
+          <span class="cart-btn-count" id="cart-badge" style="display:none">0</span>
+        </div>
+      </a>
+    </div>
+    <button class="nav-hamburger" onclick="toggleNav()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-inner">
+    <div class="breadcrumb"><a href="index.html">Home</a> <span>›</span> Menu</div>
+    <h1>Our Menu</h1>
+    <p>Fresh, hand-made and full of Himalayan flavour. Add to cart and order via WhatsApp.</p>
+  </div>
+</div>
+
+<!-- MENU CONTENT -->
+<section class="section">
+  <div class="section-inner">
+
+    <!-- Filters -->
+    <div class="menu-filters">
+      <span style="font-size:13px;color:var(--text-light);font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-right:4px">Filter:</span>
+      <button class="filter-btn active" onclick="setFilter(this,'all','menu-grid')">All Items</button>
+      <button class="filter-btn" onclick="setFilter(this,'veg','menu-grid')">🟢 Veg Only</button>
+      <button class="filter-btn" onclick="setFilter(this,'non-veg','menu-grid')">🔴 Non-Veg Only</button>
+      <button class="filter-btn" onclick="setFilter(this,'Momos','menu-grid')">Momos</button>
+      <button class="filter-btn" onclick="setFilter(this,'Noodles','menu-grid')">Noodles</button>
+    </div>
+
+    <!-- Grid -->
+    <div class="menu-grid-home" id="menu-grid"></div>
+
+    <!-- Note -->
+    <div style="margin-top:40px;padding:20px 24px;background:var(--cream-dark);border-radius:var(--radius-md);border-left:4px solid var(--gold);display:flex;gap:12px;align-items:flex-start">
+      <span style="font-size:22px">📝</span>
+      <div>
+        <p style="font-size:14px;color:var(--text-mid);line-height:1.7;font-weight:300">
+          <strong style="color:var(--text-dark)">Custom orders welcome.</strong>
+          Want extra spicy? No onion? A large family order? We're happy to accommodate.
+          Just mention your preferences when you order on WhatsApp.
+        </p>
+        <a href="https://wa.me/919810369433" target="_blank" class="btn btn-crimson btn-sm" style="margin-top:12px">
+          💬 Chat on WhatsApp
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CART SIDEBAR -->
+<div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+<aside class="cart-sidebar" id="cart-sidebar">
+  <div class="cart-header">
+    <h3>🛒 Your Cart</h3>
+    <button class="cart-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cart-items">
+    <div class="cart-empty">
+      <div class="cart-empty-icon">🥟</div>
+      <p>Your cart is empty.<br>Add some delicious momos!</p>
+    </div>
+  </div>
+  <div class="cart-footer" id="cart-footer" style="display:none">
+    <div class="cart-total">
+      <span>Total</span>
+      <strong id="cart-total-amount">₹0</strong>
+    </div>
+    <p class="cart-note">📍 Delivery to Bijwasan & nearby areas · ~45 min</p>
+    <button class="cart-whatsapp" onclick="Cart.whatsapp()">
+      💬 Order via WhatsApp
+    </button>
+  </div>
+</aside>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div>
+        <div class="footer-brand-name">🏔️ Taste of Nepal</div>
+        <p class="footer-brand-tagline">Authentic Himalayan flavours · Bijwasan, New Delhi</p>
+        <div class="footer-social">
+          <a href="https://instagram.com/TasteOfNepal01" target="_blank">📸</a>
+          <a href="https://wa.me/919810369433" target="_blank">💬</a>
+          <a href="tel:+919810369433">📞</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Pages</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="menu.html">Menu</a></li>
+          <li><a href="reservation.html">Reserve a Table</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+919810369433">+91 98103 69433</a></li>
+          <li><a href="https://instagram.com/TasteOfNepal01" target="_blank">@TasteOfNepal01</a></li>
+          <li><a>Bijwasan, New Delhi</a></li>
+          <li><a>Tue–Sun: 11AM–10PM</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Taste of Nepal · Bijwasan, New Delhi</span>
+    </div>
+  </div>
+</footer>
+
+<div id="toast"></div>
+<script src="js/main.js"></script>
+<script>
+  renderMenu("menu-grid");
+</script>
+</body>
+</html>
