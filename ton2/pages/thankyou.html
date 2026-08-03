@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <title>Order Confirmed — Taste of Nepal</title>
+  <link rel="stylesheet" href="../css/style.css"/>
+</head>
+<body>
+<nav class="navbar">
+  <div class="logo"><div class="logo-icon">🥟</div><div><div class="logo-text">Taste of <span>Nepal</span></div></div></div>
+  <ul class="navbar-links">
+    <li><a href="../index.html">Home</a></li><li><a href="menu.html">Menu</a></li>
+    <li><a href="order.html">Order</a></li><li><a href="contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<div style="background:var(--bg2);border-bottom:1px solid var(--border);padding:56px 32px;text-align:center">
+  <div style="font-size:4rem;margin-bottom:16px;animation:float 3s ease-in-out infinite">🥟</div>
+  <div class="section-tag">order confirmed</div>
+  <h1 style="font-family:var(--font-head);font-size:clamp(2rem,5vw,3rem);font-weight:800;letter-spacing:-0.04em;margin-top:12px">धन्यवाद — Thank you!</h1>
+  <p style="color:var(--text2);max-width:400px;margin:12px auto 0">Your order is in. We'll confirm on WhatsApp and get cooking straight away.</p>
+</div>
+
+<section class="section" style="padding-top:48px;padding-bottom:48px">
+  <div class="tracker-wrap">
+
+    <!-- ETA -->
+    <div class="eta-card">
+      <div class="eta-eyebrow">estimated delivery in</div>
+      <div class="eta-time" id="eta">55:00</div>
+      <div class="eta-sub">minutes · seconds</div>
+    </div>
+
+    <!-- PROGRESS -->
+    <div class="prog-wrap"><div class="prog-fill" id="prog"></div></div>
+
+    <!-- STEPS -->
+    <div class="steps">
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-dot done" id="d0">✓</div>
+        <div class="step-body"><div class="step-name on" id="n0">Order received</div><div class="step-status on" id="s0">Confirmed just now!</div></div>
+      </div>
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-dot" id="d1">🍳</div>
+        <div class="step-body"><div class="step-name" id="n1">Preparing your food</div><div class="step-status" id="s1">Starting soon · ~20 min</div></div>
+      </div>
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-dot" id="d2">📦</div>
+        <div class="step-body"><div class="step-name" id="n2">Packing your order</div><div class="step-status" id="s2">~25 min from now</div></div>
+      </div>
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-dot" id="d3">🚴</div>
+        <div class="step-body"><div class="step-name" id="n3">Out for delivery</div><div class="step-status" id="s3">~35 min from now</div></div>
+      </div>
+      <div class="step">
+        <div class="step-line"></div>
+        <div class="step-dot" id="d4">🏠</div>
+        <div class="step-body"><div class="step-name" id="n4">Delivered!</div><div class="step-status" id="s4">~55 min from now</div></div>
+      </div>
+    </div>
+
+    <!-- HELP -->
+    <div style="margin-top:40px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r2);padding:24px;text-align:center">
+      <p style="font-size:0.88rem;color:var(--text2);margin-bottom:16px">Need help with your order?</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <a href="tel:+919810369433" class="btn btn-accent" style="font-size:13px;padding:10px 20px">📞 Call us</a>
+        <a href="https://wa.me/919810369433" target="_blank" class="btn btn-ghost" style="font-size:13px;padding:10px 20px">💬 WhatsApp</a>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:24px">
+      <a href="menu.html" class="btn btn-ghost">Order more →</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer"><div class="footer-inner"><div class="footer-top"><div><div class="footer-brand-name">Taste of <span>Nepal</span></div><div class="footer-brand-contact">📞 <a href="tel:+919810369433">+91 98103 69433</a></div></div><div class="footer-col"><h5>Pages</h5><ul><li><a href="../index.html">Home</a></li><li><a href="menu.html">Menu</a></li><li><a href="order.html">Order again</a></li></ul></div></div><div class="footer-bottom"><span>© 2026 Taste of Nepal</span></div></div></footer>
+
+<script>
+  localStorage.setItem('ton_order_ts', Date.now());
+  const START = parseInt(localStorage.getItem('ton_order_ts'));
+  const TOTAL = 55 * 60;
+  const STEPS = [
+    {at:0,  icon:'✓',  name:'Order received',      sub:'Confirmed!',           done:true},
+    {at:0,  icon:'🍳', name:'Preparing your food',  sub:'In the kitchen now'},
+    {at:20, icon:'📦', name:'Packing your order',   sub:'Almost ready!'},
+    {at:25, icon:'🚴', name:'Out for delivery',     sub:'On the way to you!'},
+    {at:45, icon:'🏠', name:'Delivered!',           sub:'Enjoy your meal 🙏'},
+  ];
+  function tick(){
+    const elapsed=(Date.now()-START)/1000;
+    const remain=Math.max(0,TOTAL-elapsed);
+    const mins=elapsed/60;
+    const m=Math.floor(remain/60), s=Math.floor(remain%60);
+    document.getElementById('eta').textContent=remain===0?'Delivered! 🏠':m+':'+String(s).padStart(2,'0');
+    document.getElementById('prog').style.width=Math.min(100,Math.max(2,(elapsed/TOTAL)*100))+'%';
+    STEPS.forEach((step,i)=>{
+      const dot=document.getElementById('d'+i);
+      const name=document.getElementById('n'+i);
+      const sub=document.getElementById('s'+i);
+      const next=STEPS[i+1];
+      const isLast=i===STEPS.length-1;
+      const started=mins>=step.at;
+      const finished=!isLast&&next&&mins>=next.at;
+      if(finished){
+        dot.className='step-dot done';dot.textContent='✓';
+        name.className='step-name on';sub.className='step-status';sub.textContent='Done ✓';
+      } else if(started){
+        dot.className='step-dot active';dot.textContent=step.icon;
+        name.className='step-name on';sub.className='step-status on';
+        const left=isLast?Math.max(0,Math.ceil(TOTAL/60-mins)):Math.max(0,Math.ceil(next.at-mins));
+        sub.textContent=step.sub+(left>0?' · ~'+left+' min':'');
+      } else {
+        dot.className='step-dot';dot.textContent=step.icon;
+        name.className='step-name';sub.className='step-status';
+        sub.textContent='In ~'+step.at+' min';
+      }
+    });
+    if(remain>0)setTimeout(tick,1000);
+  }
+  tick();
+</script>
+<script src="../js/db.js"></script><script src="../js/main.js"></script>
+</body></html>
